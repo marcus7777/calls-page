@@ -1,0 +1,58 @@
+<link rel="import" href="../calls-item/calls-item.html">
+<link rel="import" href="../icon-icons/iron-icons.html">
+<link rel="import" href="../polymer/polymer.html">
+<!--
+  `<calls-page></calls-page>` demo
+  @demo demo.html
+-->
+<dom-module id="calls-page">
+  <template>
+    <template is="dom-if" if="[[!list.length]]">
+      loading ...
+    </template>
+    <template is="dom-repeat" items="{{list}}">
+    <calls-item
+      audio-file="[[item.recordingURI]]" 
+      audio-title=""
+      received="[[item.timeLocal.received]]" 
+      answered="[[item.timeLocal.answered]]"
+      from="[[item.source.displayName]]"
+      to="[[item.target.displayName]]"
+      ans="[[item.answeredBy.displayName]]"
+      duration="[[item.timeLocal.duration]]"
+      queuing="[[item.timeLocal.queueing]]"
+      transferred-to="[[item.transferredTo.displayName]]"
+      ended="[[item.timeLocal.cleared]]"
+    ></calls-item>
+    </template>
+    
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "calls-page",
+    properties:{
+      list:{
+        type:Array,
+        value:[],
+      },
+    },
+    ready: function(undefined){
+      var db = firebase.firestore()
+      var that = this
+      db.collection("calls").where("customerDomain", "==", "example.com").onSnapshot(function(doc) {
+        if (doc) {
+          var list = []
+          for (var index in doc.docs) {
+            var data = doc.docs[index].data()
+            console.log("Document data:", data)
+            list.push(data)
+          }
+          that.list = list
+        } else {
+          console.log("No such document!")
+        }
+      }) 
+    },
+  })
+</script>
