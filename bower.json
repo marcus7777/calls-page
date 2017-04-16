@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "polymer": "*",
-    "calls-item": "marcus7777/calls-item#733479308d"
+    "calls-item": "marcus7777/calls-item"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
