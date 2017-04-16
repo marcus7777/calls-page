@@ -1,0 +1,23 @@
+{
+  "name": "calls-item",
+  "version": "1.0.0",
+  "description": "\n    \n    \n    \n  ",
+  "main": "calls-item.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "dependencies": {
+    "polymer": "*",
+    "icon-icons": "*",
+    "paper-item": "polymerelements/paper-item#~1.0.7",
+    "date-display": "*",
+    "paper-audio-player": "gorork/paper-audio-player#~1.1.1",
+    "iron-collapse": "*",
+    "paper-material": "PolymerElements/paper-material#~1.0.6"
+  },
+  "devDependencies": {
+    "iron-test-helpers": "*",
+    "web-component-tester": "^5.0.0"
+  }
+}

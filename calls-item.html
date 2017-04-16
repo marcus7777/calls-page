@@ -1,0 +1,48 @@
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../paper-audio-player/paper-audio-player.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../date-display/date-display.html">
+<link rel="import" href="../paper-item/paper-item-body.html">
+<link rel="import" href="../icon-icons/iron-icons.html">
+<link rel="import" href="../polymer/polymer.html">
+<!--
+  `<calls-item></calls-item>` demo
+  @demo demo.html
+-->
+<dom-module id="calls-item">
+  <template>
+    <paper-material elevation="1">
+      <paper-item on-tap="toggle" elevation="1">
+        <paper-item-body two-line>
+          <span><strong>form:</strong> [[from]] <strong>to:</strong> [[to]] <strong>ans:</strong> [[ans]] </span>
+          <div secondary>Transferred to: [[transferredTo]]</div>
+        </paper-item-body>
+        <date-display value="[[received]]" format="DD MMM"></date-display>
+      </paper-item>
+      <iron-collapse id="collapse">
+        <table style="width:100%">
+          <tr><td>Received <date-display value="[[received]]" format="LTS"></date-display></td><td>Queuing <date-display value="[[queuing]]" format="LTS"></date-display></tr>
+          <tr><td>Answered <date-display value="[[answered]]" format="LTS"></date-display></td><td> Duration <date-display value="[[duration]]" format="LTS"></date-display></td></tr>
+          <tr><td>Ended <date-display value="[[ended]]" format="LTS"></date-display></td><td></td></tr>
+        </table>
+        <paper-audio-player src="[[audioFile]]" title="[[audioTitle]]"></paper-audio-player>
+      </iron-collapse>
+    </paper-material>
+    
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "calls-item",
+    properties:{
+      items:{
+        type:Array,
+        value:[],
+      },
+    },
+    toggle: function(undefined){
+      this.$$("iron-collapse").toggle()
+    },
+  })
+</script>
