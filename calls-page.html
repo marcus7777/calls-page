@@ -52,7 +52,15 @@
             console.log("Document data:", data)
             list.push(data)
           }
-          that.list = list
+          that.list = list.sort(function (a,b) {
+            if (a.receivedUTC > b.receivedUTC) {
+              return -1
+            }
+            if (a.receivedUTC < b.receivedUTC) {
+              return 1
+            }
+            return 0
+          })
         } else {
           console.log("No such document!")
         }
