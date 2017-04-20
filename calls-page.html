@@ -46,7 +46,7 @@
       firebase.firestore().collection("calls")
         .where("state", "==", "completed")
         .where("customerDomain", "==", "example.com")
-        .orderBy("receivedUTC")
+     //   .orderBy("receivedUTC")
         .onSnapshot(function(doc) {
         if (doc) {
           var list = []
