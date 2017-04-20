@@ -42,9 +42,12 @@
       },
     },
     ready: function(){
-      var db = firebase.firestore()
       var that = this
-      db.collection("calls").where("state", "==", "completed").where("customerDomain", "==", "example.com").onSnapshot(function(doc) {
+      firebase.firestore().collection("calls")
+        .where("state", "==", "completed")
+        .where("customerDomain", "==", "example.com")
+        .orderBy("receivedUTC")
+        .onSnapshot(function(doc) {
         if (doc) {
           var list = []
           for (var index in doc.docs) {
