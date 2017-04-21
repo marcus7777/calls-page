@@ -46,7 +46,7 @@
       firebase.firestore().collection("calls")
         .where("state", "==", "completed")
         .where("customerDomain", "==", "example.com")
-     //   .orderBy("receivedUTC")
+        .orderBy("receivedUTC")
         .onSnapshot(function(doc) {
         if (doc) {
           var list = []
@@ -55,15 +55,7 @@
             console.log("Document data:", data)
             list.push(data)
           }
-          that.list = list.sort(function (a,b) {
-            if (a.receivedUTC > b.receivedUTC) {
-              return -1
-            }
-            if (a.receivedUTC < b.receivedUTC) {
-              return 1
-            }
-            return 0
-          })
+          that.list = list
         } else {
           console.log("No such document!")
         }
