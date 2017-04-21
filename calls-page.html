@@ -40,12 +40,18 @@
         type:Array,
         value:[],
       },
+      customerDomain: {
+        value:"example.com"
+      },
+      _getReady: {
+        computed: "getReady(customerDomain)"
+      }
     },
-    ready: function(){
+    getReady: function(customerDomain){
       var that = this
       firebase.firestore().collection("calls")
         .where("state", "==", "completed")
-        .where("customerDomain", "==", "example.com")
+        .where("customerDomain", "==", customerDomain)
         .orderBy("receivedUTC")
         .onSnapshot(function(doc) {
         if (doc) {
