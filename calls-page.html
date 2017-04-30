@@ -15,19 +15,13 @@
       loading ...
     </template>
     <template is="dom-repeat" items="{{list}}">
-    <calls-item
-      audio-file="[[item.recordingURI]]" 
-      audio-title=""
-      received="[[item.timeLocal.received]]" 
-      answered="[[item.timeLocal.answered]]"
-      from="[[item.source.displayName]]"
-      to="[[item.target.displayName]]"
-      ans="[[item.answeredBy.displayName]]"
-      duration="[[item.timeLocal.duration]]"
-      queuing="[[item.timeLocal.queueing]]"
-      transferred-to="[[item.transferredTo.displayName]]"
-      ended="[[item.timeLocal.cleared]]"
-    ></calls-item>
+      <calls-item
+        received="[[item.timeLocal.received]]" 
+        answered="[[item.timeLocal.answered]]"
+        from="[[item.source.displayName]]"
+        to="[[item.target.displayName]]"
+        legs="[[item.legs]]"
+      ></calls-item>
     </template>
     
   </template>
