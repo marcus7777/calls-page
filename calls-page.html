@@ -1,3 +1,4 @@
+<link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../calls-item/calls-item.html">
 <link rel="import" href="../icon-icons/iron-icons.html">
 <link rel="import" href="../polymer/polymer.html">
@@ -14,18 +15,22 @@
     <template is="dom-if" if="[[!list.length]]">
       loading ...
     </template>
-    <template is="dom-repeat" items="{{list}}">
-      <calls-item
-        received="[[item.timeLocal.received]]" 
-        answered="[[item.timeLocal.answered]]"
-        from="[[item.source.displayName]]"
-        to="[[item.target.displayName]]"
-        legs="[[item.legs]]"
-        context="[[context]]"
-        id="item.__key"
-      ></calls-item>
-    </template>
     
+    <iron-selector>
+      <template is="dom-repeat" items="{{list}}">
+        <calls-item
+          
+          on-tap="closeNotSelected"
+          received="[[item.timeLocal.received]]" 
+          answered="[[item.timeLocal.answered]]"
+          from="[[item.source.displayName]]"
+          to="[[item.target.displayName]]"
+          no-legs="[[item.legs]]"
+          context="[[context]]"
+          id="item.__key"
+        ></calls-item>
+      </template>
+    </iron-selector>
   </template>
 </dom-module>
 <script>
@@ -41,6 +46,15 @@
       },
       _getReady: {
         computed: "getReady(customerDomain)"
+      }
+    },
+    closeNotSelected: function(){
+      var that = this
+      if (this.$$("calls-item.iron-selected")) {
+        this.$$("calls-item.iron-selected").close()
+        setTimeout(function () {
+          that.$$("calls-item.iron-selected").open()
+        },1)
       }
     },
     getReady: function(customerDomain){
