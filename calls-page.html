@@ -45,19 +45,18 @@
     },
     getReady: function(customerDomain){
       var that = this
-      var this.context = firebase.firestore().collection("calls")
+      this.context = firebase.firestore().collection("calls")
 //        .where("state", "==", "completed")
-      this.context.where("customerDomain", "==", customerDomain)
-        .orderBy("receivedUTC","desc")
+        .where("customerDomain", "==", customerDomain)
+      this.context.orderBy("receivedUTC","desc")
         .onSnapshot(function(doc) {
         if (doc) {
           
           var list = []
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
-            var id = doc.docs[index].id
+            data.__key = doc.docs[index].id
             console.log("Document data:", data)
-            data.__key = id
             list.push(data)
           }
           that.list = list
