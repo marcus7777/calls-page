@@ -8,18 +8,27 @@
 -->
 <dom-module id="calls-page">
   <template>
-    <style>:host {display:block;
-    width: 95%;
-    margin-top: 10px;
-    margin-left: 2.5%;}</style>
+    <style>
+      :host {
+        display:block;
+        width: 95%;
+        margin-top: 10px;
+        margin-left: 2.5%;
+      }
+      calls-item.iron-selected {
+        background-color: var(--google-blue-500);
+        color: white;
+        max-height: 700px;
+        margin: 50px -10px;
+      };
+    </style>
     <template is="dom-if" if="[[!list.length]]">
       loading ...
     </template>
     
     <iron-selector>
       <template is="dom-repeat" items="{{list}}">
-        <calls-item
-          
+        <calls-item  
           on-tap="closeNotSelected"
           received="[[item.timeLocal.received]]" 
           answered="[[item.timeLocal.answered]]"
@@ -46,7 +55,7 @@
       },
       _getReady: {
         computed: "getReady(customerDomain)"
-      }
+      },
     },
     closeNotSelected: function(){
       var that = this
