@@ -21,6 +21,8 @@
         from="[[item.source.displayName]]"
         to="[[item.target.displayName]]"
         legs="[[item.legs]]"
+        context="[[context]]"
+        id="item.__key"
       ></calls-item>
     </template>
     
@@ -43,16 +45,19 @@
     },
     getReady: function(customerDomain){
       var that = this
-      firebase.firestore().collection("calls")
+      var this.context = firebase.firestore().collection("calls")
 //        .where("state", "==", "completed")
-        .where("customerDomain", "==", customerDomain)
+      this.context.where("customerDomain", "==", customerDomain)
         .orderBy("receivedUTC","desc")
         .onSnapshot(function(doc) {
         if (doc) {
+          
           var list = []
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
+            var id = doc.docs[index].id()
             console.log("Document data:", data)
+            data.__key = id
             list.push(data)
           }
           that.list = list
