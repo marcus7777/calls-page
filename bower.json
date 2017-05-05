@@ -1,7 +1,7 @@
 {
   "name": "calls-page",
   "version": "1.0.0",
-  "description": "\n    \n    \n    \n  ",
+  "description": " ",
   "main": "calls-page.html",
   "keywords": [
     "polymer",
@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "polymer": "*",
-    "calls-item": "marcus7777/calls-item"
+    "calls-item": "marcus7777/calls-item#master"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
