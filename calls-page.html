@@ -55,7 +55,7 @@
           var list = []
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
-            var id = doc.docs[index].id()
+            var id = doc.docs[index].id
             console.log("Document data:", data)
             data.__key = id
             list.push(data)
