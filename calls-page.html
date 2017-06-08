@@ -69,7 +69,7 @@
       this.context = firebase.firestore().collection("calls")
 //        .where("state", "==", "completed")
         .where("customerDomain", "==", customerDomain)
-      this.context.orderBy("receivedUTC","desc").get().then(function(doc) {
+      this.context.orderBy("receivedUTC","desc").onSnapshot(function(doc) {
         if (doc) {
           var list = []
           for (var index in doc.docs) {
@@ -82,8 +82,6 @@
         } else {
           console.log("No such document!")
         }
-      }).catch(err => {
-        console.error('Error trapped in loading calls-page.html', err);
       })
     },
   })
