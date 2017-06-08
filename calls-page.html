@@ -68,8 +68,8 @@
       var that = this
       this.context = firebase.firestore().collection("calls")
 //        .where("state", "==", "completed")
-        .where("customerDomain", "==", customerDomain)
-      this.context.where('receivedUTC', '>', 0).orderBy("receivedUTC","desc")
+        .where('receivedUTC', '>', 0).where("customerDomain", "==", customerDomain)
+      this.context.orderBy("receivedUTC","desc")
         .onSnapshot(function(doc) {
         if (doc) {
           var list = []
