@@ -21,7 +21,7 @@
       };
     </style>
     <template is="dom-if" if="[[!list.length]]">
-      loading ...
+      no data / loading ...
     </template>
     
     <iron-selector>
@@ -67,7 +67,7 @@
     getReady: function(customerDomain){
       var that = this
       this.context = firebase.firestore().collection("calls")
-        .where("state", "==", "completed")
+       // .where("state", "==", "completed")
         .where("customerDomain", "==", customerDomain)
         .where('receivedUTC', '>', 0)
         .orderBy("receivedUTC","desc")
