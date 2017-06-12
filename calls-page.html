@@ -69,7 +69,7 @@
       this.context = firebase.firestore().collection("calls")
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', 'example.com')
-        .where('state', '==', 'complete')
+        .where('state', '==', 'completed')
         .orderBy('receivedUTC', 'desc')
       this.context.onSnapshot(function(doc) {
         if (doc) {
