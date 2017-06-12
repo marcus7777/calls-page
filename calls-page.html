@@ -71,7 +71,7 @@
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
         .orderBy('receivedUTC', 'desc')
-      this.context.get(function(doc) {
+      this.context.get().then(function(doc) {
         if (doc) {
           var list = []
           for (var index in doc.docs) {
