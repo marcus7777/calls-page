@@ -55,10 +55,10 @@
         computed: "getReady(customerDomain)"
       },
       _legs: {
-        computed: "getLegs(callSelected, context, customerDomain)"
+        computed: "getLegs(callSelected, customerDomain)"
       },
     },
-    getLegs: function(callSelected, context, customerDomain) {
+    getLegs: function(callSelected, customerDomain) {
       var that = this
       if (this.unsubscribeLegs) {
         this.unsubscribeLegs()
