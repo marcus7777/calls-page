@@ -55,15 +55,22 @@
         computed: "getReady(customerDomain)"
       },
       _legs: {
-        computed: "getLegs(callSelected, context)"
+        computed: "getLegs(callSelected, context, customerDomain)"
       },
     },
-    getLegs: function(callSelected, context) {
+    getLegs: function(callSelected, context, customerDomain) {
       var that = this
       if (this.unsubscribeLegs) {
         this.unsubscribeLegs()
       }
-      this.unsubscribeLegs = firebase.firestore().collection("calls").doc(callSelected).collection("legs").onSnapshot(function(doc) {
+      this.unsubscribeLegs = firebase.firestore()
+        .where('receivedUTC', '>', 0)
+        .where('customerDomain', '==', customerDomain)
+        .where('state', '==', 'completed')
+        .collection("calls")
+        .doc(callSelected)
+        .collection("legs")
+        .onSnapshot(function(doc) {
         if (doc) {
           var legs = []
           for (var index in doc.docs) {
@@ -91,11 +98,12 @@
     },
     getReady: function(customerDomain){
       var that = this
-      this.context = firebase.firestore().collection("calls")
+      firebase.firestore().collection("calls")
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
-      this.context.orderBy('receivedUTC', 'desc').onSnapshot(function(doc) {
+        .orderBy('receivedUTC', 'desc')
+        .onSnapshot(function(doc) {
         if (doc) {
           var list = []
           for (var index in doc.docs) {
