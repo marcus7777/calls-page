@@ -67,7 +67,7 @@
           this.unsubscribe[callUnsubscribe]()
         }
       }
-      this.unsubscribe[callSelected] = this.context.collection(callSelected).doc("legs").onSnapshot(function(doc) {
+      this.unsubscribe[callSelected] = this.context.where("id", "==", callSelected).doc("legs").onSnapshot(function(doc) {
         if (doc) {
           var legs = []
           for (var index in doc.docs) {
@@ -80,6 +80,8 @@
         } else {
           console.log("No such collection!")
         }
+      }, function(error) {
+        console.log(error)
       })
     },
     closeNotSelected: function(){
