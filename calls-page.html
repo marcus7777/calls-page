@@ -27,15 +27,14 @@
     <iron-selector attr-for-selected="id" selected="[[callSelected]]">
       <template is="dom-repeat" items="{{list}}">
         <calls-item  
-          on-tap="closeNotSelected"
+          call-selected="[[callSelected]]"
           received="[[item.timeLocal.received]]" 
           answered="[[item.timeLocal.answered]]"
+          on-tap="closeNotSelected"
           from="[[item.source.displayName]]"
-          to="[[item.target.displayName]]"
-          context="[[context]]"
-          id="[[item.__key]]"
           legs="[[legs]]"
-          call-selected="[[callSelected]]"
+          to="[[item.target.displayName]]"
+          id="[[item.__key]]"
         ></calls-item>
       </template>
     </iron-selector>
