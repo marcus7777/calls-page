@@ -67,12 +67,12 @@
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
             data.__key = doc.docs[index].id
-            console.log("Document legs data:", data)
+            console.log("collection legs data:", data)
             legs.push(data)
           }
           that.legs = legs
         } else {
-          console.log("No such document!")
+          console.log("No such collection!")
         }
       })
     },
