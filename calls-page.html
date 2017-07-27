@@ -67,7 +67,7 @@
           this.unsubscribeLegs[callUnsubscribe]()
         }
       }
-      this.unsubscribe[callSelected] = this.context.where("id", "==", callSelected).doc("legs").onSnapshot(function(doc) {
+      this.unsubscribeLegs[callSelected] = this.context.where("id", "==", callSelected).doc("legs").onSnapshot(function(doc) {
         if (doc) {
           var legs = []
           for (var index in doc.docs) {
