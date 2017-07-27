@@ -49,7 +49,7 @@
         value:[],
       },
       customerDomain: {
-        value:"example.com"
+        value: "example.com"
       },
       _getReady: {
         computed: "getReady(customerDomain)"
@@ -60,7 +60,14 @@
     },
     getLegs: function(callSelected, context) {
       var that = this
-      this.context.doc(callSelected).collection("legs").onSnapshot(function(doc) {
+      if (!this.unsubscribe) {
+        this.unsubscribe = {}
+      } else {
+        for (var callUnsubscribe in this.unsubscribe) {
+          this.unsubscribe[callUnsubscribe]()
+        }
+      }
+      this.unsubscribe[callSelected] = this.context.collection(callSelected).doc("legs").onSnapshot(function(doc) {
         if (doc) {
           var legs = []
           for (var index in doc.docs) {
@@ -90,8 +97,7 @@
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
-        .orderBy('receivedUTC', 'desc')
-      this.context.onSnapshot(function(doc) {
+      this.context.orderBy('receivedUTC', 'desc').onSnapshot(function(doc) {
         if (doc) {
           var list = []
           for (var index in doc.docs) {
