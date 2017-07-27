@@ -63,11 +63,10 @@
       if (this.unsubscribeLegs) {
         this.unsubscribeLegs()
       }
-      this.unsubscribeLegs = firebase.firestore()
+      this.unsubscribeLegs = firebase.firestore().collection("calls")
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
-        .collection("calls")
         .doc(callSelected)
         .collection("legs")
         .onSnapshot(function(doc) {
@@ -98,7 +97,7 @@
     },
     getReady: function(customerDomain){
       var that = this
-      firebase.firestore().collection("calls")
+      this.unsubscribeCalls = firebase.firestore().collection("calls")
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
