@@ -32,9 +32,9 @@
           answered="[[item.timeLocal.answered]]"
           from="[[item.source.displayName]]"
           to="[[item.target.displayName]]"
-          no-legs="[[item.legs]]"
           context="[[context]]"
-          id="item.__key"
+          id="[[item.__key]]"
+          legs="{{item.legs}}"
         ></calls-item>
       </template>
     </iron-selector>
