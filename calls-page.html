@@ -24,7 +24,7 @@
       no data / loading ...
     </template>
     
-    <iron-selector>
+    <iron-selector attr-for-selected="id">
       <template is="dom-repeat" items="{{list}}">
         <calls-item  
           on-tap="closeNotSelected"
