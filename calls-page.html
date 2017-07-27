@@ -67,6 +67,7 @@
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
+        .firestore()
         .doc(callSelected)
         .collection("legs")
         .onSnapshot(function(doc) {
