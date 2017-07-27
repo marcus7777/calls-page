@@ -24,7 +24,7 @@
       no data / loading ...
     </template>
     
-    <iron-selector attr-for-selected="id">
+    <iron-selector attr-for-selected="id" selected="[[callSelected]]">
       <template is="dom-repeat" items="{{list}}">
         <calls-item  
           on-tap="closeNotSelected"
@@ -34,7 +34,8 @@
           to="[[item.target.displayName]]"
           context="[[context]]"
           id="[[item.__key]]"
-          legs="{{item.legs}}"
+          legs="[[legs]]"
+          call-selected="[[callSelected]]"
         ></calls-item>
       </template>
     </iron-selector>
@@ -54,6 +55,26 @@
       _getReady: {
         computed: "getReady(customerDomain)"
       },
+      _legs: {
+        computed: "getLegs(callSelected, context)"
+      },
+    },
+    getLegs: function(callSelected, context) {
+      var that = this
+      this.context.doc(callSelected).collection("legs").onSnapshot(function(doc) {
+        if (doc) {
+          var legs = []
+          for (var index in doc.docs) {
+            var data = doc.docs[index].data()
+            data.__key = doc.docs[index].id
+            console.log("Document legs data:", data)
+            legs.push(data)
+          }
+          that.legs = legs
+        } else {
+          console.log("No such document!")
+        }
+      })
     },
     closeNotSelected: function(){
       var that = this
