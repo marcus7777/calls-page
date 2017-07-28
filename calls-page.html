@@ -27,13 +27,13 @@
     <iron-selector attr-for-selected="id" selected="{{callSelected}}">
       <template is="dom-repeat" items="{{list}}">
         <calls-item  
-          call-selected="[[callSelected]]"
+          displayName="[[item.source.displayName]]"
           received="[[item.timeLocal.received]]" 
           answered="[[item.timeLocal.answered]]"
-          on-tap="closeNotSelected"
-          item="[[item]]"
           from="[[item.source.displayName]]"
           to="[[item.target.displayName]]"
+          call-selected="[[callSelected]]"
+          on-tap="closeNotSelected"
           legs="[[legs]]"
           id="[[item.__key]]"
         ></calls-item>
@@ -84,15 +84,6 @@
       }, function(error) {
         console.log(error)
       })
-    },
-    closeNotSelected: function(){
- //     var that = this
- //     if (this.$$("calls-item.iron-selected")) {
- //       this.$$("calls-item.iron-selected").close()
- //       setTimeout(function () {
- //         that.$$("calls-item.iron-selected").open()
- //       },1)
- //     }
     },
     getReady: function(customerDomain){
       var that = this
