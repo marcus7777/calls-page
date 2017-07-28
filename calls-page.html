@@ -36,6 +36,7 @@
           on-tap="closeNotSelected"
           display-name="[[item.source.displayName]]"
           legs="[[legs]]"
+          legs-ref="[[legsRef]]"
           id="[[item.__key]]"
           photo=""
         ></calls-item>
@@ -67,10 +68,10 @@
         this.unsubscribeLegs()
       }
       this.legs = []
-      this.unsubscribeLegs = firebase.firestore()
-        .collection("calls").doc(callSelected)
+      this.legsRef = this.callsRef.doc(callSelected)
         .collection("legs").where('receivedUTC', '>', 0)
-        .onSnapshot(function(doc) {
+      
+      this.unsubscribeLegs = this.legsRef.onSnapshot(function(doc) {
         if (doc) {
           var legs = []
           for (var index in doc.docs) {
@@ -89,7 +90,8 @@
     },
     getReady: function(customerDomain){
       var that = this
-      this.unsubscribeCalls = firebase.firestore().collection("calls")
+      this.callsRef = firebase.firestore().collection("calls")
+      this.unsubscribeCalls = this.callsRef
         .where('receivedUTC', '>', 0)
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
