@@ -68,10 +68,10 @@
         this.unsubscribeLegs()
       }
       this.legs = []
-      this.legsRef = this.callsRef.doc(callSelected)
-        .collection("legs").where('receivedUTC', '>', 0)
+      this.legsRef = this.callsRef.doc(callSelected).collection("legs")
       
-      this.unsubscribeLegs = this.legsRef.onSnapshot(function(doc) {
+      this.unsubscribeLegs = this.legsRef.where('receivedUTC', '>', 0)
+        .onSnapshot(function(doc) {
         if (doc) {
           var legs = []
           for (var index in doc.docs) {
