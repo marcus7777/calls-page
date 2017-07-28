@@ -63,6 +63,7 @@
       if (this.unsubscribeLegs) {
         this.unsubscribeLegs()
       }
+      this.legs = []
       this.unsubscribeLegs = firebase.firestore()
         .collection("calls").doc(callSelected)
         .collection("legs").where('receivedUTC', '>', 0)
