@@ -28,8 +28,6 @@
       <template is="dom-repeat" items="{{list}}">
         <calls-item  
           displayName="[[item.source.displayName]]"
-          received="[[item.timeLocal.received]]" 
-          answered="[[item.timeLocal.answered]]"
           from="[[item.source.displayName]]"
           to="[[item.target.displayName]]"
           call-selected="[[callSelected]]"
