@@ -39,6 +39,7 @@
           id="[[item.__key]]"
           photo=""
           recording="[[item.recording]]"
+          wide="[[wide]]"
         ></calls-item>
       </template>
     </iron-selector>
@@ -47,10 +48,10 @@
 <script>
   Polymer({
     is: "calls-page",
-    properties:{
-      list:{
-        type:Array,
-        value:[],
+    properties: {
+      list: {
+        type: Array,
+        value: [],
       },
       customerDomain: {
         value: "example.com"
@@ -60,6 +61,10 @@
       },
       _legs: {
         computed: "getLegs(callSelected, customerDomain)"
+      },
+      wide: {
+        type: Boolean,
+        value: false,
       },
     },
     getLegs: function(callSelected, customerDomain) {
