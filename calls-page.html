@@ -106,7 +106,6 @@
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
             data.__key = doc.docs[index].id
-            console.log("Document data:", data)
             list.push(data)
           }
           that.list = list
