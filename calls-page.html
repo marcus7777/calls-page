@@ -95,7 +95,7 @@
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
             data.__key = doc.docs[index].id
-            if (index == 0) {
+            if (+index == 0) {
               that.legSelected = data.__key
             }
             legs.push(data)
