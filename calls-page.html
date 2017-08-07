@@ -42,6 +42,7 @@
           title="[[item.__key]]"
           recording="[[item.recording]]"
           wide="[[wide]]"
+          legSelected="[[legSelected]]"
         ></calls-item>
       </template>
     </iron-selector>
@@ -94,6 +95,9 @@
           for (var index in doc.docs) {
             var data = doc.docs[index].data()
             data.__key = doc.docs[index].id
+            if (index == 0) {
+              that.legSelected = data.__key
+            }
             legs.push(data)
           }
           that.legs = legs
