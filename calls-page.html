@@ -85,31 +85,33 @@
     },
     getLegs: function(callSelected, customerDomain) {
       var that = this
-      if (this.unsubscribeLegs) {
-        this.unsubscribeLegs()
-      }
-      this.legs = []
-      this.legsRef = this.callsRef.doc(callSelected).collection("legs")
-      
-      this.unsubscribeLegs = this.legsRef.where('receivedUTC', '>', 0)
-        .onSnapshot(function(doc) {
-        if (doc) {
-          var legs = []
-          for (var index in doc.docs) {
-            var data = doc.docs[index].data()
-            data.__key = doc.docs[index].id
-            if (+index == 0) {
-              that.legSelected = data.__key
-            }
-            legs.push(data)
-          }
-          that.legs = legs
-        } else {
-          console.log("No such collection!")
+      if (callSelected) {
+        if (this.unsubscribeLegs) {
+          this.unsubscribeLegs()
         }
-      }, function(error) {
-        console.log(error)
-      })
+        this.legs = []
+        this.legsRef = this.callsRef.doc(callSelected).collection("legs")
+      
+        this.unsubscribeLegs = this.legsRef.where('receivedUTC', '>', 0)
+          .onSnapshot(function(doc) {
+          if (doc) {
+            var legs = []
+            for (var index in doc.docs) {
+              var data = doc.docs[index].data()
+              data.__key = doc.docs[index].id
+              if (+index == 0) {
+                that.legSelected = data.__key
+              }
+              legs.push(data)
+            }
+            that.legs = legs
+          } else {
+            console.log("No such collection!")
+          }
+        }, function(error) {
+          console.log(error)
+        })
+      }
     },
     getReady: function(customerDomain){
       var that = this
