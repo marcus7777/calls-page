@@ -126,6 +126,7 @@
         .where('customerDomain', '==', customerDomain)
         .where('state', '==', 'completed')
         .orderBy('receivedUTC', 'desc')
+        .limit(50)
         .onSnapshot(function(doc) {
         if (doc) {
           var list = []
