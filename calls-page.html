@@ -19,6 +19,9 @@
       calls-item.iron-selected {
         max-height: 700px;
         margin: 50px -10px;
+      }
+      calls-item.iron-selected.0 {
+        margin: 0px -10px 50px;
       };
     </style>
     <template is="dom-if" if="[[!list.length]]">
@@ -27,7 +30,8 @@
     
     <iron-selector attr-for-selected="id" selected="{{callSelected}}">
       <template is="dom-repeat" items="{{list}}">
-        <calls-item  
+        <calls-item 
+          class="[[index]]"
           displayName="[[item.source.displayName]]"
           from="[[item.source.displayName]]"
           to="[[item.target.displayName]]"
