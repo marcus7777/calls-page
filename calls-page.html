@@ -20,7 +20,7 @@
         max-height: 700px;
         margin: 50px -10px;
       }
-      calls-item.iron-selected.0 {
+      .i0 calls-item.iron-selected {
         margin: 0px -10px 50px;
       };
     </style>
@@ -30,23 +30,24 @@
     
     <iron-selector attr-for-selected="id" selected="{{callSelected}}">
       <template is="dom-repeat" items="{{list}}">
-        <calls-item 
-          class$="[[index]]"
-          displayName="[[item.source.displayName]]"
-          from="[[item.source.displayName]]"
-          to="[[item.target.displayName]]"
-          call-selected="[[callSelected]]"
-          display-name="[[item.source.displayName]]"
-          times="[[item.times]]"
-          legs="[[legs]]"
-          legs-ref="[[legsRef]]"
-          id="[[item.__key]]"
-          photo=""
-          title="[[item.__key]]"
-          recording="[[item.recording]]"
-          wide="[[wide]]"
-          leg-selected="{{legSelected}}"
-        ></calls-item>
+        <div class$="i[[index]]">
+          <calls-item
+            displayName="[[item.source.displayName]]"
+            from="[[item.source.displayName]]"
+            to="[[item.target.displayName]]"
+            call-selected="[[callSelected]]"
+            display-name="[[item.source.displayName]]"
+            times="[[item.times]]"
+            legs="[[legs]]"
+            legs-ref="[[legsRef]]"
+            id="[[item.__key]]"
+            photo=""
+            title="[[item.__key]]"
+            recording="[[item.recording]]"
+            wide="[[wide]]"
+            leg-selected="{{legSelected}}"
+          ></calls-item>
+        </div>
       </template>
     </iron-selector>
   </template>
