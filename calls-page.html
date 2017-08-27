@@ -31,7 +31,7 @@
     <iron-selector attr-for-selected="id" selected="{{callSelected}}">
       <template is="dom-repeat" items="{{list}}">
         <calls-item 
-          class="[[index]]"
+          class$="[[index]]"
           displayName="[[item.source.displayName]]"
           from="[[item.source.displayName]]"
           to="[[item.target.displayName]]"
