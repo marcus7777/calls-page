@@ -16,6 +16,7 @@
         margin-top: 10px;
         margin-left: 2.5%;
       }
+      .mobi {width:100%} 
       calls-item.iron-selected {
         max-height: 700px;
         margin: 50px -10px;
@@ -27,8 +28,8 @@
     <template is="dom-if" if="[[!list.length]]">
       no data / loading ...
     </template>
-    
-    <iron-selector attr-for-selected="id" selected="{{callSelected}}">
+    <iron-media-query query="(max-width: 640px)" query-matches="{{small}}"></iron-media-query>
+    <iron-selector class$="[[mobi]]" attr-for-selected="id" selected="{{callSelected}}">
       <template is="dom-repeat" items="{{list}}">
         <calls-item class$="i[[index]]"
           displayName="[[item.source.displayName]]"
@@ -73,8 +74,19 @@
       },
       callSelected: {
         notify:true,
-      },
+      },                                                                                                                                              
+      mobi: {                                                                                                                                         
+        value:"",                                                                                                                                     
+        computed: "isMobi(small)",                                                                                                                    
+      }, 
     },
+    isMobi: function(small) {                                                                                                                         
+       if (small) {                                                                                                                                    
+         return "mobi"                                                                                                                                 
+       } else {                                                                                                                                        
+         return ""                                                                                                                                     
+       }                                                                                                                                               
+     }, 
     behaviors: [ Polymer.IronResizableBehavior ],
     listeners: { "iron-resize": "onWidthChange" },
     onWidthChange: function() {
