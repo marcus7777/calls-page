@@ -24,7 +24,16 @@
       }
       calls-item.i0.iron-selected {
         margin: 0px -10px 50px;
-      };
+      }
+      .overlay {
+        position: fixed;
+        background:#fff;
+        z-index: 1000;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+      }
     </style>
     <template is="dom-if" if="[[!list.length]]">
       no data / loading ...
