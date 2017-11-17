@@ -31,7 +31,7 @@
     </template>
     <iron-media-query query="(max-width: 640px)" query-matches="{{small}}"></iron-media-query>
     <app-route route="{{route}}" pattern="/:call" data="{{routeData}}" tail="{{tail}}"></app-route>
-    <iron-selector class$="[[mobi]]" attr-for-selected="id" selected="{{callSelected}}">
+    <iron-selector class$="[[mobi]]" attr-for-selected="id" selected="{{routeData.call}}">
       <template is="dom-repeat" items="{{list}}">
         <calls-item class$="i[[index]]" route="{{tail}}"
           displayName="[[item.source.displayName]]"
@@ -68,28 +68,19 @@
         computed: "getReady(customerDomain)"
       },
       _legs: {
-        computed: "getLegs(callSelected, customerDomain)"
+        computed: "getLegs(routeData.call, customerDomain)"
       },
       wide: {
         type: Boolean,
         value: false,
-      },
-      callSelected: {
-        notify:true,
-      },                                                                                                                                              
+      },                                                                                                                         
       mobi: {                                                                                                                                         
         value:"",                                                                                                                                     
         computed: "isMobi(small)",                                                                                                                    
       },
-      routeData: {
+      route: {
         notify:true,
-        observer: "_setCallSelected",
       },
-    },
-    _setCallSelected: function(route){
-      if (route.call) {
-        this.callSelected = route.call
-      }
     },
     isMobi: function(small) {                                                                                                                         
        if (small) {                                                                                                                                    
