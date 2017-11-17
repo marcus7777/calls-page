@@ -78,7 +78,14 @@
       mobi: {                                                                                                                                         
         value:"",                                                                                                                                     
         computed: "isMobi(small)",                                                                                                                    
-      }, 
+      },
+      route: {
+        notify:true,
+        observe: "_setCallSelected",
+      },
+    },
+    _setCallSelected: function(route){
+      console.log(route)
     },
     isMobi: function(small) {                                                                                                                         
        if (small) {                                                                                                                                    
