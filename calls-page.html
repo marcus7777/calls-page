@@ -87,8 +87,12 @@
         computed: "isMobi(small)",                                                                                                                    
       },
       route: {
-        notify:true,
+        notify: true,
+        observer: "setRoute"
       },
+    },
+    setRoute: function(route){
+      console.log(route)
     },
     isMobi: function(small) {                                                                                                                         
        if (small) {                                                                                                                                    
