@@ -39,7 +39,7 @@
       no data / loading ...
     </template>
     <iron-media-query query="(max-width: 640px)" query-matches="{{small}}"></iron-media-query>
-    <app-route route="{{route}}" pattern=":call" data="{{routeData}}" tail="{{tail}}"></app-route>
+    <app-route route="{{route}}" pattern="/:call" data="{{routeData}}" tail="{{tail}}"></app-route>
     <iron-selector class$="[[mobi]]" attr-for-selected="id" selected="{{routeData.call}}">
       <template is="dom-repeat" items="{{list}}">
         <calls-item class$="i[[index]]" route="{{tail}}"
