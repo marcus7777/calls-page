@@ -116,8 +116,8 @@
     },
     getLegs: function(callSelected, customerDomain) {
       var that = this
-      if (callSelected) {
-        var t0 = performance.now()
+      if (callSelected && this.callSelectedLoading !== callSelected) {
+        this.callSelectedLoading = callSelected
         if (this.unsubscribeLegs) {
           this.unsubscribeLegs()
         }
@@ -126,9 +126,6 @@
       
         this.unsubscribeLegs = this.legsRef.where('receivedUTC', '>', 0)
           .onSnapshot(function(doc) {
-          var t1 = performance.now()
-          console.log("Call to get Legs took " + (t1 - t0) + " milliseconds.")
-          t0 = performance.now()
           if (doc) {
             var legs = []
             for (var index in doc.docs) {
