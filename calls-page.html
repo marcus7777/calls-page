@@ -70,13 +70,13 @@
         value: [],
       },
       customerDomain: {
-        value: "example.com"
+        value: "example.com",
       },
       _getReady: {
-        computed: "getReady(customerDomain)"
+        computed: "getReady(customerDomain)",
       },
       _legs: {
-        computed: "getLegs(routeData.call, customerDomain)"
+        computed: "getLegs(routeData.call, customerDomain)",
       },
       wide: {
         type: Boolean,
@@ -88,7 +88,7 @@
       },
       route: {
         notify: true,
-        observer: "setRoute"
+        observer: "setRoute",
       },
     },
     setRoute: function(route){
