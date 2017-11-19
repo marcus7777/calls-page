@@ -93,8 +93,8 @@
     },
     setRoute: function(route){
       console.log(route)
-      if (!route.path) {
-        this.route.path = "/"
+      if (route.path === "") {
+        this.set("route.path","/")
       }
     },
     isMobi: function(small) {                                                                                                                         
