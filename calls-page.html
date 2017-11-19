@@ -118,6 +118,7 @@
       var that = this
       if (callSelected && this.callSelectedLoading !== callSelected) {
         this.callSelectedLoading = callSelected
+       
         if (this.unsubscribeLegs) {
           this.unsubscribeLegs()
         }
@@ -137,6 +138,7 @@
               legs.push(data)
             }
             that.legs = legs
+            that.scrollIntoView()
           } else {
             console.log("No such collection!")
           }
